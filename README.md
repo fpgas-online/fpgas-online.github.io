@@ -1,4 +1,4 @@
-# website
+# fpgas-online.github.io
 
 The https://fpgas.online landing page -- a static site published with
 GitHub Pages.
@@ -16,7 +16,7 @@ Pushing to `main` runs the `Deploy GitHub Pages` workflow, which uploads
 `site/` as a Pages artifact and deploys it. The Pages source for this repo
 is set to "GitHub Actions" (not "deploy from branch").
 
-The site is currently served at https://fpgas-online.github.io/website/ ;
+The site is currently served at https://fpgas-online.github.io/ ;
 pointing https://fpgas.online at it (custom domain + DNS) is the next step.
 
 To preview locally:
@@ -37,6 +37,6 @@ uv run --no-project python -m http.server 8000 --directory site
 | [fpgas.online-setup-pi](https://github.com/fpgas-online/fpgas.online-setup-pi) | Raspberry Pi environment setup for fpgas.online nodes |
 | [fpgas.online-netboot-pi](https://github.com/fpgas-online/fpgas.online-netboot-pi) | Netboot filesystem preparation tools |
 | [fpgas.online-tools](https://github.com/fpgas-online/fpgas.online-tools) | Utility scripts and tools |
-| [website](https://github.com/fpgas-online/website) | The fpgas.online website |
+| [fpgas-online.github.io](https://github.com/fpgas-online/fpgas-online.github.io) | The fpgas.online website (this repo) |
 | [apt](https://github.com/fpgas-online/apt) | APT package repository (GitHub Pages) |
 | [todo](https://github.com/fpgas-online/todo) | TODO items tracking |
