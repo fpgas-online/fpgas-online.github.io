@@ -92,12 +92,12 @@
     font-weight: 700;
   }
   table.button td a:hover { background: #f2f2f2; }
-  table.button td a small { display: block; font-weight: 400; color: var(--grey); font-size: .85rem; }
-  @media (max-width: 40rem) {
+  table.button td a small { display: block; font-weight: 400; color: var(--grey); font-size: .85rem; overflow-wrap: anywhere; }
+  @media (max-width: 60rem) {
     /* Let the button cells wrap instead of forcing the page wider than the screen */
     table.button, table.button tbody { display: block; }
     table.button tr { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
-    table.button td { display: block; flex: 1 1 10rem; }
+    table.button td { display: block; flex: 1 1 12rem; max-width: 22rem; }
   }
 
   /* Map with clickable pins */
@@ -242,6 +242,7 @@
         <tr>
           <td><a href="https://ps1.fpgas.online/">Use an FPGA in Chicago <small>ps1.fpgas.online &middot; USA</small></a></td>
           <td><a href="https://welland.fpgas.online/">Use an FPGA in Adelaide <small>welland.fpgas.online &middot; Australia</small></a></td>
+          <td><a href="https://tinytapeout.welland.fpgas.online/">Use a Tiny Tapeout board <small>tinytapeout.welland.fpgas.online &middot; Australia</small></a></td>
           <td><a href="https://github.com/fpgas-online">Source code <small>github.com/fpgas-online</small></a></td>
         </tr>
       </table>
@@ -262,7 +263,8 @@
     <table class="button" aria-label="Sites">
       <tr>
         <td><a href="https://ps1.fpgas.online/">ps1.fpgas.online <small>Pumping Station: One hackerspace, Chicago, IL, USA<br>Digilent Arty A7 &amp; LiteFury boards</small></a></td>
-        <td><a href="https://welland.fpgas.online/">welland.fpgas.online <small>Welland, near Adelaide, South Australia<br>Arty, NeTV2, Fomu, Acorn CLE&#8209;215+ &amp; Tiny Tapeout boards</small></a></td>
+        <td><a href="https://welland.fpgas.online/">welland.fpgas.online <small>Welland, near Adelaide, South Australia<br>Arty, NeTV2, Fomu &amp; Acorn CLE&#8209;215+ boards</small></a></td>
+        <td><a href="https://tinytapeout.welland.fpgas.online/">tinytapeout.welland.fpgas.online <small>Welland, near Adelaide, South Australia<br>Tiny Tapeout demo boards with real open-source silicon</small></a></td>
       </tr>
     </table>
   </section>
@@ -290,7 +292,7 @@
   <section class="start" id="getting-started">
     <h2>Getting Started</h2>
     <ol class="steps">
-      <li>Pick a site above (<a href="https://ps1.fpgas.online/">Chicago</a> or <a href="https://welland.fpgas.online/">Adelaide</a>) and choose an available board</li>
+      <li>Pick a site above (<a href="https://ps1.fpgas.online/">Chicago</a>, <a href="https://welland.fpgas.online/">Adelaide</a> or <a href="https://tinytapeout.welland.fpgas.online/">Adelaide&rsquo;s Tiny Tapeout boards</a>) and choose an available board</li>
       <li>Follow the <a href="https://github.com/fpgas-online/fpgas-online.github.io/wiki/Getting-Started"><strong>Getting Started guide</strong></a> to build a bitstream locally using open source FPGA toolchains</li>
       <li>Upload your bitstream to the Pi and program the FPGA</li>
       <li>Watch your design run on real hardware via the camera feed</li>
