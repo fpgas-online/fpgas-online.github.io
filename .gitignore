@@ -151,8 +151,8 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
-/site
+# mkdocs documentation (NOT ignored here: site/ is the published GitHub Pages content)
+#/site
 
 # mypy
 .mypy_cache/
