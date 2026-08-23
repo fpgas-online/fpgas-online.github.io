@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fpgas.online — Access a real FPGA right now!</title>
+<meta name="description" content="fpgas.online lets anyone remotely access and control real FPGA development boards from a web browser, for free, with a live camera so you can watch the LEDs.">
+<link rel="icon" href="favicon.png">
+<link rel="canonical" href="https://fpgas.online/">
+<meta property="og:title" content="fpgas.online — Access a real FPGA right now!">
+<meta property="og:description" content="Remotely access and control real FPGA development boards from your browser, for free. Sites in Chicago (USA) and Welland (South Australia).">
+<meta property="og:url" content="https://fpgas.online/">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --fg: #1b1f24;
+    --muted: #57606a;
+    --card: #ffffff;
+    --border: #d0d7de;
+    --accent: #0b6e4f;
+    --accent-fg: #ffffff;
+    --accent-soft: #e3f4ee;
+    --shadow: 0 1px 2px rgba(27,31,36,.08), 0 8px 24px rgba(27,31,36,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --fg: #e6edf3;
+      --muted: #9da7b3;
+      --card: #161b22;
+      --border: #30363d;
+      --accent: #3fb68b;
+      --accent-fg: #0d1117;
+      --accent-soft: #12291f;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  a:hover { text-decoration-thickness: 2px; }
+  .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* Header / hero */
+  header {
+    padding: 3.5rem 0 2rem;
+    text-align: center;
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: .85rem;
+    text-decoration: none;
+    color: var(--fg);
+  }
+  .logo svg { width: 3.25rem; height: 3.25rem; flex: none; }
+  .logo h1 {
+    margin: 0;
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+  }
+  .tagline {
+    margin: 1rem auto 0;
+    max-width: 36rem;
+    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+    color: var(--muted);
+  }
+
+  /* Destination cards */
+  .choices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.25rem;
+    margin: 2rem 0 3rem;
+    padding: 0;
+    list-style: none;
+  }
+  .choices li { display: flex; }
+  .card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: .85rem;
+    box-shadow: var(--shadow);
+    color: var(--fg);
+    text-decoration: none;
+    transition: transform .12s ease, border-color .12s ease;
+  }
+  .card:hover, .card:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    outline: none;
+  }
+  .card .kicker {
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .card h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    overflow-wrap: break-word;
+  }
+  .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .card .go {
+    margin-top: auto;
+    padding-top: .75rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* Sections */
+  section { margin: 0 0 3rem; }
+  section h2 {
+    font-size: 1.5rem;
+    margin: 0 0 .75rem;
+    letter-spacing: -.01em;
+  }
+  .lede { font-size: 1.1rem; }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem 2rem;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    list-style: none;
+  }
+  .features li {
+    padding-left: 1.75rem;
+    position: relative;
+  }
+  .features li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .45em;
+    width: 1rem; height: 1rem;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    box-shadow: inset 0 0 0 .3rem var(--accent);
+  }
+  .features strong { display: block; }
+
+  /* Diagram */
+  figure.diagram {
+    margin: 1.75rem 0 0;
+    padding: 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: .85rem;
+    overflow-x: auto;
+  }
+  figure.diagram svg { display: block; width: 100%; max-width: 40rem; height: auto; margin: 0 auto; }
+  figure.diagram figcaption { text-align: center; color: var(--muted); font-size: .9rem; margin-top: .5rem; }
+
+  .soon {
+    display: inline-block;
+    padding: .1rem .5rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: .8rem;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+
+  /* Repositories table */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: .85rem; background: var(--card); }
+  table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  th, td { text-align: left; padding: .6rem .9rem; border-top: 1px solid var(--border); vertical-align: top; }
+  thead th { border-top: 0; background: var(--accent-soft); font-weight: 700; }
+  td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9em; }
+
+  footer {
+    padding: 2rem 0 3rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .9rem;
+  }
+  footer p { margin: .35rem 0; }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <a class="logo" href="https://fpgas.online/" aria-label="fpgas.online home">
+    <!-- Chip icon: matches favicon.png -->
+    <svg viewBox="0 0 92 92" role="img" aria-hidden="true">
+      <g fill="currentColor">
+        <rect x="22" y="22" width="48" height="48" rx="3"/>
+        <rect x="30" y="3" width="8" height="12"/><rect x="42" y="3" width="8" height="12"/><rect x="54" y="3" width="8" height="12"/>
+        <rect x="30" y="77" width="8" height="12"/><rect x="42" y="77" width="8" height="12"/><rect x="54" y="77" width="8" height="12"/>
+        <rect x="3" y="30" width="12" height="8"/><rect x="3" y="42" width="12" height="8"/><rect x="3" y="54" width="12" height="8"/>
+        <rect x="77" y="30" width="12" height="8"/><rect x="77" y="42" width="12" height="8"/><rect x="77" y="54" width="12" height="8"/>
+      </g>
+      <g fill="var(--bg)">
+        <rect x="28" y="28" width="16" height="16"/><rect x="48" y="28" width="16" height="16"/>
+        <rect x="28" y="48" width="16" height="16"/><rect x="48" y="48" width="16" height="16"/>
+      </g>
+      <g fill="currentColor">
+        <rect x="33" y="33" width="6" height="6"/><rect x="53" y="33" width="6" height="6"/>
+        <rect x="33" y="53" width="6" height="6"/><rect x="53" y="53" width="6" height="6"/>
+      </g>
+    </svg>
+    <h1>fpgas.online</h1>
+  </a>
+  <p class="tagline">Access a real FPGA right now — from your browser, for free.</p>
+</header>
+
+<main class="wrap">
+
+  <ul class="choices" aria-label="Choose where to go">
+    <li>
+      <a class="card" href="https://ps1.fpgas.online/">
+        <span class="kicker">Chicago, USA</span>
+        <h2>ps1.fpgas.online</h2>
+        <p>Hosted at the Pumping Station: One hackerspace. Digilent Arty A7 and LiteFury boards.</p>
+        <span class="go">Use an FPGA in Chicago &rarr;</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="https://welland.fpgas.online/">
+        <span class="kicker">Welland, South Australia</span>
+        <h2>welland.fpgas.online</h2>
+        <p>Hosted in Welland, near Adelaide. Arty, NeTV2, Fomu, Acorn CLE‑215+ and Tiny Tapeout boards.</p>
+        <span class="go">Use an FPGA in Adelaide &rarr;</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="https://github.com/fpgas-online">
+        <span class="kicker">Source code</span>
+        <h2>github.com/fpgas-online</h2>
+        <p>Everything that runs fpgas.online is open source — the web app, the Ansible infra, the Pi images and the test designs.</p>
+        <span class="go">Browse the code on GitHub &rarr;</span>
+      </a>
+    </li>
+  </ul>
+
+  <section id="about">
+    <h2>What is fpgas.online?</h2>
+    <p class="lede">
+      fpgas.online lets anyone — including you! — remotely access and control a real FPGA
+      development board over the Internet. Pick a free board, upload your bitstream or run one
+      of the demos, and watch the result on a live camera pointed at the board's LEDs.
+      No hardware to buy, nothing to install, and it costs nothing to use.
+    </p>
+    <ul class="features">
+      <li><strong>Real hardware</strong> Actual FPGA dev boards, not a simulator. Each board sits on its own Raspberry&nbsp;Pi that programs it and streams video.</li>
+      <li><strong>Two sites, two continents</strong> Boards at the <a href="https://pumpingstationone.org/">Pumping Station: One</a> hackerspace in Chicago (USA) and in Welland (South Australia), so there is usually one free and close to you.</li>
+      <li><strong>Fully open source</strong> The web app, the infrastructure-as-code, the Pi netboot images and the test designs are all on GitHub under Apache 2.0.</li>
+      <li><strong>Coming soon <span class="soon">Soon!</span></strong> More FPGA types, and <a href="https://tinytapeout.com/">Tiny Tapeout</a> demo boards so you can poke at real open-source silicon too.</li>
+    </ul>
+
+    <figure class="diagram">
+      <!-- "You -> The Internet -> Raspberry Pi -> FPGA board (+ camera)" -->
+      <svg viewBox="0 0 640 150" role="img" aria-labelledby="diag-title">
+        <title id="diag-title">You, via the Internet, control a Raspberry Pi which programs an FPGA board and streams a camera view back to you.</title>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--muted)"/>
+          </marker>
+        </defs>
+        <g font-family="system-ui, sans-serif" font-size="14" fill="var(--fg)" text-anchor="middle">
+          <!-- You -->
+          <circle cx="60" cy="45" r="14" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <path d="M38 95 Q60 60 82 95" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <text x="60" y="125" font-weight="700">You</text>
+
+          <!-- Internet cloud -->
+          <path d="M200 85 q-28 0 -28 -22 q0 -20 22 -20 q6 -22 32 -20 q24 0 30 18 q26 -4 30 20 q0 24 -26 24 z"
+                fill="var(--accent-soft)" stroke="var(--muted)" stroke-width="2"/>
+          <text x="230" y="68" fill="var(--muted)">The Internet</text>
+          <text x="230" y="125">Browser / SSH</text>
+
+          <!-- Raspberry Pi -->
+          <rect x="355" y="32" width="90" height="56" rx="6" fill="var(--card)" stroke="var(--muted)" stroke-width="2"/>
+          <rect x="365" y="42" width="14" height="10" fill="var(--muted)"/>
+          <rect x="365" y="58" width="14" height="10" fill="var(--muted)"/>
+          <rect x="395" y="46" width="40" height="28" rx="2" fill="none" stroke="var(--muted)" stroke-width="2"/>
+          <text x="400" y="125">Raspberry Pi</text>
+
+          <!-- FPGA board -->
+          <rect x="505" y="22" width="110" height="76" rx="6" fill="var(--card)" stroke="var(--accent)" stroke-width="2.5"/>
+          <rect x="545" y="44" width="32" height="32" rx="2" fill="var(--accent)"/>
+          <g fill="var(--accent)">
+            <rect x="515" y="30" width="8" height="8"/><rect x="527" y="30" width="8" height="8"/>
+            <rect x="515" y="82" width="8" height="8"/><rect x="527" y="82" width="8" height="8"/>
+            <rect x="539" y="82" width="8" height="8"/><rect x="551" y="82" width="8" height="8"/>
+          </g>
+          <text x="560" y="125" font-weight="700">FPGA board</text>
+
+          <!-- Arrows -->
+          <line x1="100" y1="60" x2="168" y2="60" stroke="var(--muted)" stroke-width="2.5" marker-end="url(#arr)" marker-start="url(#arr)"/>
+          <line x1="295" y1="60" x2="350" y2="60" stroke="var(--muted)" stroke-width="2.5" marker-end="url(#arr)" marker-start="url(#arr)"/>
+          <line x1="450" y1="60" x2="500" y2="60" stroke="var(--muted)" stroke-width="2.5" marker-end="url(#arr)" marker-start="url(#arr)"/>
+        </g>
+      </svg>
+      <figcaption>Each FPGA board is attached to a Raspberry Pi that programs it, talks to it, and streams a camera view of it back to your browser.</figcaption>
+    </figure>
+  </section>
+
+  <section id="repositories">
+    <h2>Repositories</h2>
+    <p>All of the code behind fpgas.online lives in the <a href="https://github.com/fpgas-online">fpgas-online</a> GitHub organisation:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Repository</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://github.com/fpgas-online/fpgas.online-site"><code>fpgas.online-site</code></a></td><td>Django web application for fpgas.online</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/fpgas.online-infra"><code>fpgas.online-infra</code></a></td><td>Ansible infrastructure for fpgas.online</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/fpgas.online-test-designs"><code>fpgas.online-test-designs</code></a></td><td>LiteX-based test designs that verify FPGA boards are working</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/fpgas.online-tt"><code>fpgas.online-tt</code></a></td><td>Pi-side Tiny Tapeout demo-board bridge daemon</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/tt-commander-app"><code>tt-commander-app</code></a></td><td>Web app to control the Tiny Tapeout demo board</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/fpgas.online-poe"><code>fpgas.online-poe</code></a></td><td>SNMP PoE switch management</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/fpgas.online-cam"><code>fpgas.online-cam</code></a></td><td>Camera capture and streaming for Raspberry Pi boards</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/fpgas.online-setup-pi"><code>fpgas.online-setup-pi</code></a></td><td>Raspberry Pi environment setup for fpgas.online nodes</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/fpgas.online-netboot-pi"><code>fpgas.online-netboot-pi</code></a></td><td>Netboot filesystem preparation tools</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/rpi-qemu"><code>rpi-qemu</code></a></td><td>Test Raspberry Pi 4B in emulation (QEMU with GENET Ethernet, PXE boot)</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/fpgas.online-tools"><code>fpgas.online-tools</code></a></td><td>Utility scripts and tools</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/apt"><code>apt</code></a></td><td>APT package repository (GitHub Pages)</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/website"><code>website</code></a></td><td>This website</td></tr>
+          <tr><td><a href="https://github.com/fpgas-online/todo"><code>todo</code></a></td><td>TODO items tracking</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>fpgas.online is run by Tim &lsquo;mithro&rsquo; Ansell and Carl Karsten with help from the open-source FPGA community.
+       Want to help out, host boards, or donate hardware? <a href="mailto:me@mith.ro,carl@NextDayVideo.com?subject=Helping%20with%20fpgas.online">Get in touch</a>.</p>
+    <p>Related: <a href="https://wafer.space/">wafer.space</a> &middot; <a href="https://tinytapeout.com/">Tiny Tapeout</a> &middot; <a href="https://fomu.im/">Fomu</a> &middot;
+       <a href="https://github.com/fpgas-online/website">Edit this page on GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
