@@ -1,5 +1,29 @@
 # website
-The https://fpgas.online website
+
+The https://fpgas.online landing page -- a static site published with
+GitHub Pages.
+
+## Layout
+
+| Path | Purpose |
+|------|---------|
+| `site/` | The published content. `site/index.html` is the whole landing page (self-contained HTML + inline CSS, no build step). |
+| `.github/workflows/pages.yml` | Deploys `site/` to GitHub Pages on every push to `main` (and via manual dispatch). |
+
+## Deployment
+
+Pushing to `main` runs the `Deploy GitHub Pages` workflow, which uploads
+`site/` as a Pages artifact and deploys it. The Pages source for this repo
+is set to "GitHub Actions" (not "deploy from branch").
+
+The site is currently served at https://fpgas-online.github.io/website/ ;
+pointing https://fpgas.online at it (custom domain + DNS) is the next step.
+
+To preview locally:
+
+```bash
+uv run --no-project python -m http.server 8000 --directory site
+```
 
 ## Repositories
 
