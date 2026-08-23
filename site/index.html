@@ -78,7 +78,7 @@
   .intro .pic img { width: 100%; max-width: 26rem; display: block; margin: 0 auto; }
 
   /* Bordered button table, like ps1's table.button */
-  table.button { margin: 1rem auto; border-collapse: separate; border-spacing: .5rem; }
+  table.button { margin: 1rem auto 0; border-collapse: separate; border-spacing: .5rem; }
   table.button td {
     border: 1px solid var(--rule);
     text-align: center;
@@ -92,7 +92,8 @@
     font-weight: 700;
   }
   table.button td a:hover { background: #f2f2f2; }
-  table.button td a small { display: block; font-weight: 400; color: var(--grey); font-size: .85rem; overflow-wrap: anywhere; }
+  table.button td a small { display: block; font-weight: 400; color: var(--grey); font-size: .85rem; }
+  table.button .host { white-space: nowrap; }   /* never break a hostname mid-word */
   @media (max-width: 60rem) {
     /* Let the button cells wrap instead of forcing the page wider than the screen */
     table.button, table.button tbody { display: block; }
@@ -238,19 +239,20 @@
       <p>Build your design locally with open source toolchains, upload a bitstream, and watch the LEDs
          blink via a live camera feed. There are ~10 FPGA boards connected to the system, so there should
          always be one free and ready for you to use.</p>
-      <table class="button" aria-label="Where to go">
-        <tr>
-          <td><a href="https://ps1.fpgas.online/">Use an FPGA in Chicago <small>ps1.fpgas.online &middot; USA</small></a></td>
-          <td><a href="https://welland.fpgas.online/">Use an FPGA in Adelaide <small>welland.fpgas.online &middot; Australia</small></a></td>
-          <td><a href="https://tinytapeout.welland.fpgas.online/">Use a Tiny Tapeout board <small>tinytapeout.welland.fpgas.online &middot; Australia</small></a></td>
-          <td><a href="https://github.com/fpgas-online">Source code <small>github.com/fpgas-online</small></a></td>
-        </tr>
-      </table>
     </div>
     <div class="pic">
       <img src="img/intro.png" width="791" height="336" alt="YOU! — via the Internet and a Raspberry Pi — connected to an FPGA board">
     </div>
   </div>
+
+  <table class="button" aria-label="Where to go">
+    <tr>
+      <td><a href="https://ps1.fpgas.online/">Use an FPGA in Chicago <small><span class="host">ps1.fpgas.online</span> &middot; USA</small></a></td>
+      <td><a href="https://welland.fpgas.online/">Use an FPGA in Adelaide <small><span class="host">welland.fpgas.online</span> &middot; Australia</small></a></td>
+      <td><a href="https://tinytapeout.welland.fpgas.online/">Use a Tiny Tapeout board <small><span class="host">tinytapeout.welland.fpgas.online</span> &middot; Australia</small></a></td>
+      <td><a href="https://github.com/fpgas-online">Source code <small><span class="host">github.com/fpgas-online</span></small></a></td>
+    </tr>
+  </table>
 
   <section class="sites" id="sites">
     <h2 class="brand">2 sites &mdash; pick one!</h2>
@@ -262,9 +264,9 @@
     </div>
     <table class="button" aria-label="Sites">
       <tr>
-        <td><a href="https://ps1.fpgas.online/">ps1.fpgas.online <small>Pumping Station: One hackerspace, Chicago, IL, USA<br>Digilent Arty A7 &amp; LiteFury boards</small></a></td>
-        <td><a href="https://welland.fpgas.online/">welland.fpgas.online <small>Welland, near Adelaide, South Australia<br>Arty, NeTV2, Fomu &amp; Acorn CLE&#8209;215+ boards</small></a></td>
-        <td><a href="https://tinytapeout.welland.fpgas.online/">tinytapeout.welland.fpgas.online <small>Welland, near Adelaide, South Australia<br>Tiny Tapeout demo boards with real open-source silicon</small></a></td>
+        <td><a href="https://ps1.fpgas.online/"><span class="host">ps1.fpgas.online</span> <small>Pumping Station: One hackerspace, Chicago, IL, USA<br>Digilent Arty A7 &amp; LiteFury boards</small></a></td>
+        <td><a href="https://welland.fpgas.online/"><span class="host">welland.fpgas.online</span> <small>Welland, near Adelaide, South Australia<br>Arty, NeTV2, Fomu &amp; Acorn CLE&#8209;215+ boards</small></a></td>
+        <td><a href="https://tinytapeout.welland.fpgas.online/"><span class="host">tinytapeout.welland.fpgas.online</span> <small>Welland, near Adelaide, South Australia<br>Tiny Tapeout demo boards with real open-source silicon</small></a></td>
       </tr>
     </table>
   </section>
