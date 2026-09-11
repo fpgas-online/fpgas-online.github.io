@@ -249,7 +249,7 @@
     <tr>
       <td><a href="https://ps1.fpgas.online/">Use an FPGA in Chicago <small><span class="host">ps1.fpgas.online</span> &middot; USA</small></a></td>
       <td><a href="https://welland.fpgas.online/">Use an FPGA in Adelaide <small><span class="host">welland.fpgas.online</span> &middot; Australia</small></a></td>
-      <td><a href="https://tinytapeout.welland.fpgas.online/">Use a Tiny Tapeout board <small><span class="host">tinytapeout.welland.fpgas.online</span> &middot; Australia</small></a></td>
+      <td><a href="https://tinytapeout.fpgas.online/">Use a Tiny Tapeout board <small><span class="host">tinytapeout.fpgas.online</span> &middot; Australia</small></a></td>
       <td><a href="https://github.com/fpgas-online">Source code <small><span class="host">github.com/fpgas-online</span></small></a></td>
     </tr>
   </table>
@@ -266,7 +266,7 @@
       <tr>
         <td><a href="https://ps1.fpgas.online/"><span class="host">ps1.fpgas.online</span> <small>Pumping Station: One hackerspace, Chicago, IL, USA<br>Digilent Arty A7 &amp; LiteFury boards</small></a></td>
         <td><a href="https://welland.fpgas.online/"><span class="host">welland.fpgas.online</span> <small>Welland, near Adelaide, South Australia<br>Arty, NeTV2, Fomu &amp; Acorn CLE&#8209;215+ boards</small></a></td>
-        <td><a href="https://tinytapeout.welland.fpgas.online/"><span class="host">tinytapeout.welland.fpgas.online</span> <small>Welland, near Adelaide, South Australia<br>Tiny Tapeout demo boards with real open-source silicon</small></a></td>
+        <td><a href="https://tinytapeout.fpgas.online/"><span class="host">tinytapeout.fpgas.online</span> <small>Welland, near Adelaide, South Australia<br>Tiny Tapeout demo boards with real open-source silicon</small></a></td>
       </tr>
     </table>
   </section>
@@ -294,8 +294,8 @@
   <section class="start" id="getting-started">
     <h2>Getting Started</h2>
     <ol class="steps">
-      <li>Pick a site above (<a href="https://ps1.fpgas.online/">Chicago</a>, <a href="https://welland.fpgas.online/">Adelaide</a> or <a href="https://tinytapeout.welland.fpgas.online/">Adelaide&rsquo;s Tiny Tapeout boards</a>) and choose an available board</li>
-      <li>Follow the <a href="https://github.com/fpgas-online/fpgas-online.github.io/wiki/Getting-Started"><strong>Getting Started guide</strong></a> to build a bitstream locally using open source FPGA toolchains</li>
+      <li>Pick a site above (<a href="https://ps1.fpgas.online/">Chicago</a>, <a href="https://welland.fpgas.online/">Adelaide</a> or <a href="https://tinytapeout.fpgas.online/">Adelaide&rsquo;s Tiny Tapeout boards</a>) and choose an available board</li>
+      <li>Follow the <a href="https://github.com/CarlFK/pici/wiki/Getting-Started"><strong>Getting Started guide</strong></a> to build a bitstream locally using open source FPGA toolchains</li>
       <li>Upload your bitstream to the Pi and program the FPGA</li>
       <li>Watch your design run on real hardware via the camera feed</li>
     </ol>
@@ -308,7 +308,7 @@
         <thead><tr><th>Board</th><th>FPGA</th><th>Toolchain</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td><a href="https://digilent.com/reference/programmable-logic/arty-a7/start">Digilent Arty A7</a></td><td>Xilinx Artix-7</td><td><a href="https://github.com/openXC7">openXC7</a></td><td>Active</td></tr>
-          <tr><td><a href="https://www.kosagi.com/w/index.php?title=NeTV2">Kosagi NeTV2</a></td><td>Xilinx Artix-7</td><td><a href="https://github.com/openXC7">openXC7</a></td><td>Active</td></tr>
+          <tr><td><a href="https://www.crowdsupply.com/alphamax/netv2">Kosagi NeTV2</a></td><td>Xilinx Artix-7</td><td><a href="https://github.com/openXC7">openXC7</a></td><td>Active</td></tr>
           <tr><td><a href="https://tomu.im/fomu.html">Fomu EVT</a></td><td>Lattice iCE40UP5K</td><td>Yosys + nextpnr-ice40</td><td>Active</td></tr>
           <tr><td><a href="https://tinytapeout.com/">TT FPGA Demo Board</a></td><td>Lattice iCE40UP5K</td><td>Yosys + nextpnr-ice40</td><td>Active</td></tr>
         </tbody>
@@ -325,9 +325,12 @@
   <section class="behind" id="documentation">
     <h2>Documentation</h2>
     <ul class="bullets">
-      <li><a href="https://github.com/fpgas-online/fpgas-online.github.io/wiki/Getting-Started"><strong>Getting Started</strong></a> &mdash; build your first bitstream and load it onto an FPGA</li>
-      <li><a href="https://github.com/fpgas-online/fpgas-online.github.io/wiki"><strong>Behind the Scenes (Wiki)</strong></a> &mdash; how the infrastructure works</li>
-      <li><a href="https://github.com/fpgas-online/fpgas-online.github.io/wiki/Wiring-Diagram"><strong>Wiring Diagram</strong></a> &mdash; hardware connections between the Pi and the FPGA</li>
+      <li><a href="https://github.com/CarlFK/pici/wiki/Getting-Started"><strong>Getting Started</strong></a> &mdash; build your first bitstream and load it onto an FPGA</li>
+      <li><a href="https://github.com/CarlFK/pici/wiki"><strong>Behind the Scenes (Wiki)</strong></a> &mdash; how the infrastructure works</li>
+      <li><a href="https://github.com/CarlFK/pici/wiki/Wiring-Diagram"><strong>Wiring Diagram</strong></a> &mdash; hardware connections between the Pi and the FPGA</li>
+      <li><a href="https://docs.fpgas.online/"><strong>Documentation</strong></a> &mdash; the full reference for both sites: how the hardware is put together and how the infrastructure behind it runs</li>
+      <li><a href="https://docs.fpgas.online/en/latest/boards/index.html"><strong>Boards</strong></a> &mdash; every FPGA board type, how it is wired to its Raspberry Pi, and how to program it</li>
+      <li><a href="https://docs.fpgas.online/en/latest/setup/index.html"><strong>Setup</strong></a> &mdash; netboot and the NFS root, the network, the Pi hosts, the gateway and the web application</li>
     </ul>
     <ul class="photos">
       <li><figure><img src="img/rack.jpg" width="675" height="900" alt="Laser-cut rack of slots holding Raspberry Pis and FPGA boards"><figcaption>The rack of Pi + FPGA slots</figcaption></figure></li>
